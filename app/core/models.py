@@ -16,10 +16,11 @@ class UserManager(BaseUserManager):
         """Create, save and return a new user."""
         if not email:
             raise ValueError('User must have an email address.')
-        # extra fields can provide keyword arguments, any number of keyword arguments that
-        # will be passed into our model.
-        # This is useful when you define additional fields, for example, a name, you can pass it as an extra
-        # field and that will be automatically created when the user model is created.
+        # extra fields can provide keyword arguments, any number of keyword
+        # arguments that will be passed into our model.
+        # This is useful when you define additional fields, ex a name,
+        # you can pass it as an extra field and that will be automatically
+        # created when the user model is created.
         # self.model will be the User model
         user = self.model(email=self.normalize_email(email), **extra_fields)
         user.set_password(password)
@@ -44,6 +45,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
 
-    objects = UserManager() # assign usermanager
+    objects = UserManager()  # assign usermanager
 
     USERNAME_FIELD = 'email'
