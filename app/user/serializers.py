@@ -21,8 +21,8 @@ class UserSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         """Create and return a user with encrypted password."""
-        # overwriting the create method so that we can call get use model objects
-        # then pass in the already validated data from our sterilizer.
+        # overwriting the create method so that we can call get use model
+        # object then pass in the already validated data from sterilizer.
         return get_user_model().objects.create_user(**validated_data)
 
     # instance is the model instance that gonna be updated
@@ -51,7 +51,8 @@ class AuthTokenSerializer(serializers.Serializer):
         """Validate and authenticate the user."""
         email = attrs.get('email')
         password = attrs.get('password')
-        user = authenticate(  # authentication function that comes built in with Django.
+        # authentication function that comes built in with Django.
+        user = authenticate(
             request=self.context.get('request'),
             username=email,
             password=password,

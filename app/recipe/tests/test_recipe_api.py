@@ -27,7 +27,8 @@ def create_recipe(user, **params):
         'description': 'Sample description',
         'link': 'http://example.com/recipe.pdf',
     }
-    defaults.update(params)  # update the defaults if any **params dict is provided
+    # update the defaults if any **params dict is provided
+    defaults.update(params)
 
     recipe = Recipe.objects.create(user=user, **defaults)
     return recipe
@@ -81,6 +82,7 @@ class PrivateRecipeApiTests(TestCase):
         res = self.client.get(RECIPES_URL)
 
         recipes = Recipe.objects.filter(user=self.user)
-        serializer = RecipeSerializer(recipes, many=True)  # tell it wan to parse a list of items
+        # tell it wan to parse a list of items
+        serializer = RecipeSerializer(recipes, many=True)
         self.assertEqual(res.status_code, status.HTTP_200_OK)
         self.assertEqual(res.data, serializer.data)
