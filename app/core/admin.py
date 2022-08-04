@@ -50,3 +50,4 @@ class UserAdmin(BaseUserAdmin):
 
 # ",UserAdmin" specify to use above customize version
 admin.site.register(models.User, UserAdmin)
+admin.site.register(models.Recipe)
