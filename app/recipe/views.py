@@ -49,8 +49,9 @@ class RecipeViewSet(viewsets.ModelViewSet):
 
 
 # use ViewSet since it gonna be basic CRUD
-# GenericViewSet should be the last in the import
-class TagViewSet(mixins.UpdateModelMixin,
+# GenericViewSet MUST be the last one in the import
+class TagViewSet(mixins.DestroyModelMixin,
+                 mixins.UpdateModelMixin,
                  mixins.ListModelMixin,
                  viewsets.GenericViewSet):
     """Manage tags in the database."""
