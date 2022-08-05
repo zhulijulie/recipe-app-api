@@ -15,6 +15,7 @@ router = DefaultRouter()
 # create a new endpoint api/recipes and it will assign all of the
 # different endpoints from our recipe viewset to that endpoint.
 router.register('recipes', views.RecipeViewSet)
+router.register('tags', views.TagViewSet)
 
 app_name = 'recipe'
 
