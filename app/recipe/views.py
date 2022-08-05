@@ -49,7 +49,10 @@ class RecipeViewSet(viewsets.ModelViewSet):
 
 
 # use ViewSet since it gonna be basic CRUD
-class TagViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
+# GenericViewSet should be the last in the import
+class TagViewSet(mixins.UpdateModelMixin,
+                 mixins.ListModelMixin,
+                 viewsets.GenericViewSet):
     """Manage tags in the database."""
     serializer_class = serializers.TagSerializer
     queryset = Tag.objects.all()
