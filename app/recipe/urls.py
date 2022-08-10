@@ -16,6 +16,7 @@ router = DefaultRouter()
 # different endpoints from our recipe viewset to that endpoint.
 router.register('recipes', views.RecipeViewSet)
 router.register('tags', views.TagViewSet)
+router.register('ingredients', views.IngredientViewSet)
 
 app_name = 'recipe'
 
