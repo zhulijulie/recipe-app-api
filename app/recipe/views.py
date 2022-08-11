@@ -1,6 +1,12 @@
 """
 Views for the recipe APIs
 """
+from drf_spectacular.utils import (
+    extend_schema_view,
+    extend_schema,
+    OpenApiParameter,
+    OpenApiTypes,
+)
 from rest_framework import (
     viewsets,
     mixins,  # can mix in a view to add functions
@@ -19,6 +25,22 @@ from core.models import (
 from recipe import serializers
 
 
+@extend_schema_view(
+    list=extend_schema(
+        parameters=[
+            OpenApiParameter(
+                'tags',
+                OpenApiTypes.STR,
+                description='Comma separated list of tag IDs to filter',
+            ),
+            OpenApiParameter(
+                'ingredients',
+                OpenApiTypes.STR,
+                description='Comma separated list of ingredient IDs to filter',
+            ),
+        ]
+    )
+)
 # ModelViewSet is specifically set up to work directly with a model
 # because we're going to use a lot of the existing logic that's
 # provided by the serializer in order to perform a create read, update
